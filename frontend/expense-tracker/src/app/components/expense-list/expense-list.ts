@@ -4,12 +4,13 @@ import { ExpenseService } from '../../services/expense-service';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SummaryStatsComponent } from "../summary-stats/summary-stats/summary-stats";
 
 
 @Component({
   selector: 'app-expense-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule],
+  imports: [CommonModule, MatTableModule, MatPaginatorModule, SummaryStatsComponent],
   templateUrl: './expense-list.html',
   styleUrl: './expense-list.css'
 })

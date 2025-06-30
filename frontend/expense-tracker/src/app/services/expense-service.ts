@@ -16,15 +16,15 @@ export class ExpenseService {
     return this.http.get<Expense[]>(`${this.baseUrl}/get-expenses`);
   }
 
-  addExpense(expense: Expense): Observable<Expense> {
-    return this.http.post<Expense>(`${this.baseUrl}/expenses`, expense);
+  // addExpense(expense: Expense): Observable<Expense> {
+  //   return this.http.post<Expense>(`${this.baseUrl}/expenses`, expense);
+  // }
+
+  getTotalExpenseAmount(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/get-total-expenses`);
   }
 
-  getTotal(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/expenses/total`);
-  }
-
-  getByCategory(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/expenses/total-by-category`);
+  getExpenseAmountByCategory(): Observable<any> {
+    return this.http.get<{[category: string]: number }>(`${this.baseUrl}/get-category-total`);
   }
 }

@@ -1,0 +1,14 @@
+<div>
+  <h2>Expense Summary</h2>
+
+  <p><strong>Total Amount:</strong> ${{ totalAmount.toFixed(2) }}</p>
+
+  <div *ngIf="categoryTotals">
+    <h3>Amount by Category:</h3>
+    <ul>
+        <li *ngFor="let category of categoryTotals">
+            {{ category.category }}: ${{ category.total.toFixed(2) }}
+        </li>
+    </ul>
+  </div>
+</div>

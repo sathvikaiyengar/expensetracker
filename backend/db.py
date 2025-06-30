@@ -1,8 +1,10 @@
 import sqlite3
 
+DB_PATH = 'expenses.db'
+
 # create_db function to initialize the expenses database
 def create_db():
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS expenses (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,7 +20,7 @@ def create_db():
 
 # function to add an expense to the database
 def add_expense(description, amount, category, date):
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''INSERT INTO expenses (description, amount, category, date)
                  VALUES (?, ?, ?, ?)''', (description, amount, category, date))
@@ -27,7 +29,7 @@ def add_expense(description, amount, category, date):
 
 # function to retrieve all expenses from the database
 def get_expenses():
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''SELECT * FROM expenses''')
     rows = c.fetchall()
@@ -41,7 +43,7 @@ def get_expenses():
 
 # function to delete an expense by its ID
 def delete_expense(expense_id):
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''DELETE FROM expenses WHERE id = ?''', (expense_id,))
     conn.commit()
@@ -49,7 +51,7 @@ def delete_expense(expense_id):
 
 # function to update an existing expense
 def update_expense(expense_id, description, amount, category, date): 
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''UPDATE expenses SET description = ?, amount = ?, category = ?, date = ?
                  WHERE id = ?''', (description, amount, category, date, expense_id))
@@ -59,21 +61,30 @@ def update_expense(expense_id, description, amount, category, date):
 
 # function to get the total expenses
 def get_total_expenses():
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''SELECT SUM(amount) FROM expenses''')
     total = c.fetchone()[0]
     conn.close()
     return total if total is not None else 0.0
 
-# function to get expenses by category
+# function to get total expenses by category
 def get_expenses_by_category(category):
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
-    c.execute('''SELECT * FROM expenses WHERE category = ?''', (category,))
-    expenses = c.fetchall()
+    c.execute('''SELECT SUM(amount) FROM expenses WHERE category = ?''', (category,))
+    total = c.fetchone()[0]
     conn.close()
-    return expenses
+    return total if total is not None else 0.0
+
+# function to get unique categories from the expenses
+def get_unique_categories():
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute('''SELECT DISTINCT category FROM expenses''')
+    categories = [row[0] for row in c.fetchall()]
+    conn.close()
+    return categories
 
 # # function to get expenses by date
 # def get_expenses_by_date(date):
@@ -86,7 +97,7 @@ def get_expenses_by_category(category):
 
 # function to get highest spend and lowest spend from a specific category
 def get_highest_lowest_spend(category):
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''SELECT MAX(amount), MIN(amount) FROM expenses WHERE category = ?''', (category,))
     result = c.fetchone()
@@ -96,7 +107,7 @@ def get_highest_lowest_spend(category):
 
 # function to get expenses within a date range
 def get_expenses_by_date_range(start_date, end_date): 
-    conn = sqlite3.connect('expenses.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute('''SELECT * FROM expenses WHERE date BETWEEN ? AND ?''', (start_date, end_date))
     expenses = c.fetchall()
