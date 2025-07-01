@@ -12,6 +12,7 @@ import { Expense } from '../models/expense.model';
   styleUrls: ['./trends-chart.css']
 })
 
+// Component to display a line chart of expenses over time
 export class TrendsChartComponent implements AfterViewInit, OnChanges {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
   @Input() expenses: Expense[] = [];
@@ -22,7 +23,6 @@ export class TrendsChartComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('Received new expenses:', this.expenses);
     if (this.chart) {
       this.chart.destroy();
     }
@@ -31,17 +31,15 @@ export class TrendsChartComponent implements AfterViewInit, OnChanges {
   }
 
   renderChart() {
-    console.log('Rendering chart with expenses:', this.expenses);
     if (!this.chartCanvas || !this.expenses?.length) return;
   
     if (this.chart) this.chart.destroy();
 
     const grouped: Record<string, number> = {};
-
   
+    // Group expenses by date and sum amounts
     this.expenses.forEach((expense) => {
-      console.log(expense.amount, expense.date);
-      const d = expense.date.slice(0, 10); // Ensure only YYYY-MM-DD
+      const d = expense.date.slice(0, 10); // Extract date part in YYYY-MM-DD format
       grouped[d] = (grouped[d] || 0) + expense.amount;
     });
 

@@ -1,3 +1,4 @@
+<!-- Display expense trends over time periods and categories -->
 <div class="width-500 p-20">
 
   <h2 mat-dialog-title>Select Trend Parameters</h2>
@@ -6,7 +7,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
       <mat-select formControlName="category">
-        <!-- <mat-option value="">All</mat-option> -->
+        <mat-option value="">All</mat-option>
         <mat-option *ngFor="let c of categories" [value]="c">{{ c }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -25,7 +26,6 @@
 
     </div>
    
-
     <div mat-dialog-actions style="justify-content: flex-end;">
       <button mat-button type="button" (click)="dialogRef.close()">Close</button>
       <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>

@@ -1,25 +1,25 @@
-<!-- Form for entering a new expense  -->
-<form (ngSubmit)="onSubmitExpense()" class="flex-column-container p-20">
+<!-- Form for entering a new expense -->
+<form [formGroup]="expenseForm" (ngSubmit)="onSubmitExpense()" class="flex-column-container p-20">
 
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
-    <input matInput type="text" [(ngModel)]="description" name="description" required>
+    <input matInput type="text" formControlName="description" required>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Amount</mat-label>
-    <input matInput type="number" [(ngModel)]="amount" name="amount" required>
+    <input matInput type="number" formControlName="amount" required>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Category</mat-label>
-    <input matInput type="text" [(ngModel)]="category" name="category" required>
+    <input matInput type="text" formControlName="category" required>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Date</mat-label>
-    <input matInput type="date" [(ngModel)]="date" name="date" required>
+    <input matInput type="date" formControlName="date" required>
   </mat-form-field>
 
-  <button mat-flat-button color="primary" type="submit">Add Expense</button>
+  <button mat-flat-button color="primary" type="submit" [disabled]="expenseForm.invalid">Add Expense</button>
 </form>
