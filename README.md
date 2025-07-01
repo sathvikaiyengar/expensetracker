@@ -10,8 +10,11 @@ This application consists of a Python/Flask backend and an Angular frontend to b
 
 To run the Angular front end:
 > cd frontend/expense-tracker
+
 > npm install
+
 > cd src/app
+
 > ng serve
 
 
@@ -19,10 +22,13 @@ To run the Flask backend:
 
 Some package installations may be required: 
 > cd backend
+
 > pip install -r requirements.txt
 > python app.py
 
 For virtual environment:
 > python3 -m venv env
+
 > source env/bin/activate
+
 > python app.py 
