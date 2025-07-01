@@ -24,6 +24,7 @@ Some package installations may be required:
 > cd backend
 
 > pip install -r requirements.txt
+
 > python app.py
 
 For virtual environment:
