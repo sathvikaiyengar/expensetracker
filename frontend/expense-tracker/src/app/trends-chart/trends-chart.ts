@@ -46,12 +46,17 @@ export class TrendsChartComponent implements AfterViewInit, OnChanges {
     const labels = Object.keys(grouped).sort();
     const data = labels.map(date => grouped[date]);
 
+    // Determine if there is a single category or multiple categories for label
+    const uniqueCategories = Array.from(new Set(this.expenses.map(e => e.category)));
+    const label = uniqueCategories.length === 1 ? `Expenses for ${uniqueCategories[0]}` : 'Expenses for All Categories';
+
+    // Create chart with correspdoning labels and data
     this.chart = new Chart(this.chartCanvas.nativeElement, {
       type: 'line',
       data: {
       labels,
       datasets: [{
-        label: 'Expenses for ' + (this.expenses[0]?.category || 'All Categories'),
+        label,
         data,
         borderColor: '#3f51b5',
         backgroundColor: 'rgba(63,81,181,0.2)',

@@ -35,7 +35,7 @@ export class ExpenseTrendsComponent {
   ) {
     this.categories = data.categories;
     this.form = this.fb.group({
-      category: ['', Validators.required],
+      category: [''],
       startDate: [null, Validators.required],
       endDate: [null, Validators.required]
     });
