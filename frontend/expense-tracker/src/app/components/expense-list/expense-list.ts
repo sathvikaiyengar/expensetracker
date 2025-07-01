@@ -8,6 +8,7 @@ import { SummaryStatsComponent } from "../summary-stats/summary-stats/summary-st
 import { AddExpenseComponent } from '../add-expense/add-expense';
 import { MatDialog } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { ExpenseTrendsComponent } from '../expense-trends/expense-trends';
 
 @Component({
   selector: 'app-expense-list',
@@ -19,12 +20,13 @@ import {MatButtonModule} from '@angular/material/button';
 
 // Component to display the list of expenses
 export class ExpenseListComponent implements AfterViewInit {
+
   displayedColumns: string[] = ['description', 'category', 'date', 'amount',];
   dataSource = new MatTableDataSource<Expense>([]);
   totalExpenses = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  availableCategories: string[] = ['Food', 'Transport', 'Utilities', 'Misc', 'Beauty', 'Entertainment'];
   constructor(private expenseService: ExpenseService, private dialog: MatDialog) {}
 
   // Initialize data and set up paginator
@@ -39,7 +41,9 @@ export class ExpenseListComponent implements AfterViewInit {
 
   // Open the dialog to add a new expense
   openAddExpenseForm() {
-    const dialogRef = this.dialog.open(AddExpenseComponent);
+    const dialogRef = this.dialog.open(AddExpenseComponent, {
+      width: '500px',
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'submitted') {
@@ -57,5 +61,13 @@ export class ExpenseListComponent implements AfterViewInit {
       },
       error: (err) => console.error('Failed to load expenses:', err)
     });
+  }
+
+  openTrendFilterDialog() {
+    const dialogRef = this.dialog.open(ExpenseTrendsComponent, {
+    width: '1000px',
+    data: { categories: this.availableCategories } 
+  });
+
   }
 }

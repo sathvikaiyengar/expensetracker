@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltip } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-summary-stats',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatProgressBarModule, MatTooltip],
+  imports: [CommonModule, MatCardModule, MatProgressBarModule, MatTooltip, MatButtonModule],
   templateUrl: './summary-stats.html',
   styleUrls: ['./summary-stats.css']
 })

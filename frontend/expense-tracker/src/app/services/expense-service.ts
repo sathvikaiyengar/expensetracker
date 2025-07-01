@@ -37,6 +37,10 @@ export class ExpenseService {
     return this.http.get<{[category: string]: number }>(`${this.baseUrl}/get-category-total`);
   }
 
+  getExpensesByDateRangeCat(startDate: string, endDate: string, category?: string): Observable<Expense[]> {
+    return this.http.post<Expense[]>(`${this.baseUrl}/get-expenses-by-date-cat`, { startDate, endDate, category });
+  }
+
   // Observable for external components to subscribe to updates to expense list
   getExpenseUpdates(): Observable<void> {
     return this.expensesChanged.asObservable();

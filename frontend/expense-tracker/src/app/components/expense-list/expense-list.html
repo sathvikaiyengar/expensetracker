@@ -3,9 +3,14 @@
 
 <div class="flex-space-between-center pt-10">
     <h3>Transactions</h3>
-    <button mat-raised-button color="primary" (click)="openAddExpenseForm()">
-    + Add Expense
-    </button>
+    <div class="display-flex gap-20" >
+          <button mat-raised-button color="primary" (click)="openTrendFilterDialog()">View Trends</button>
+     
+          <button mat-raised-button color="primary" (click)="openAddExpenseForm()">
+          + Add Expense
+          </button>
+    </div>
+   
 </div>
 
 <!-- Expenses Table -->

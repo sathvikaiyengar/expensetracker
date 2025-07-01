@@ -43,6 +43,20 @@ def create_expense():
     db.add_expense(description, amount, category, date)
     return jsonify({'message': 'Expense added successfully'}), 201
 
+# get expenses within a date range and category
+@app.route('/get-expenses-by-date-cat', methods=['POST'])
+def read_expenses_by_date_cat():
+    data = request.json
+    start_date = data.get('startDate')
+    end_date = data.get('endDate')
+    category = data.get('category')
+    print(f"Received data: start_date={start_date}, end_date={end_date}, category={category}")
+    if not start_date or not end_date:
+        return jsonify({'error': 'Start date and end date are required'}), 400
+
+    expenses = db.get_expenses_by_date_range_cat(start_date, end_date, category)
+    print(expenses)
+    return jsonify(expenses), 200
 
 
 # delete an expense by ID

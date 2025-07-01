@@ -6,7 +6,7 @@ The Expense Tracker application helps users manage and monitor their personal fi
 
 ## Running Instructions
 
-This application consists of a Python/Flask backend and an Angular frontend. 
+This application consists of a Python/Flask backend and an Angular frontend to be run in 2 separate terminals. 
 
 To run the Angular front end:
 > cd frontend/expense-tracker/src/app
@@ -16,5 +16,5 @@ To run the Angular front end:
 To run the Flask backend:
 > cd backend
 > python3 -m venv venv
-> source venv/vin activate
+> source venv/bin activate
 > python app.py 

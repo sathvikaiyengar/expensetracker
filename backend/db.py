@@ -86,30 +86,15 @@ def get_unique_categories():
     conn.close()
     return categories
 
-# # function to get expenses by date
-# def get_expenses_by_date(date):
-#     conn = sqlite3.connect('expenses.db')
-#     c = conn.cursor()
-#     c.execute('''SELECT * FROM expenses WHERE date = ?''', (date,))
-#     expenses = c.fetchall()
-#     conn.close()
-#     return expenses
 
-# function to get highest spend and lowest spend from a specific category
-def get_highest_lowest_spend(category):
+# function to get expenses within a date range from a category or not
+def get_expenses_by_date_range_cat(start_date, end_date, category=None): 
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
-    c.execute('''SELECT MAX(amount), MIN(amount) FROM expenses WHERE category = ?''', (category,))
-    result = c.fetchone()
-    conn.close()
-    return {'highest': result[0], 'lowest': result[1]} if result else {'highest': None, 'lowest': None}
-
-
-# function to get expenses within a date range
-def get_expenses_by_date_range(start_date, end_date): 
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    c.execute('''SELECT * FROM expenses WHERE date BETWEEN ? AND ?''', (start_date, end_date))
+    if category:
+        c.execute('''SELECT * FROM expenses WHERE date BETWEEN ? AND ? AND category = ?''', (start_date, end_date, category))
+    else:
+        c.execute('''SELECT * FROM expenses WHERE date BETWEEN ? AND ?''', (start_date, end_date))
     expenses = c.fetchall()
     conn.close()
     return expenses
