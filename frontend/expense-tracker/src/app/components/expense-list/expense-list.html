@@ -1,29 +1,41 @@
 <app-summary-stats></app-summary-stats>
-<h1>Expense Tracker</h1>
-<div>
-<table mat-table [dataSource]="expenses" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let expense"> {{ expense.description }} </td>
-    </ng-container>
 
-    <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Amount </th>
-        <td mat-cell *matCellDef="let expense"> ${{ expense.amount }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef> Category </th>
-        <td mat-cell *matCellDef="let expense"> {{ expense.category }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let expense"> {{ expense.date }} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="['description', 'amount', 'category', 'date']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['description', 'amount', 'category', 'date'];"></tr>
-</table>
+<div class="flex-space-between-center pt-10">
+    <h3>Transactions</h3>
+    <button mat-raised-button color="primary" (click)="openAddExpenseForm()">
+    + Add Expense
+    </button>
 </div>
+
+<!-- Expenses Table -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let expense"> {{ expense.description }} </td>
+  </ng-container>
+ 
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let expense"> {{ expense.category }} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let expense"> {{ expense.date }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let expense"> ${{ expense.amount }} </td>
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>

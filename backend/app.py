@@ -3,57 +3,45 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)   
-# Importing the database functions
-from db import (
-    add_expense,
-    get_expenses,
-    delete_expense,
-    get_unique_categories,
-    update_expense,
-    get_total_expenses,
-    get_expenses_by_category,
-    get_expenses_by_date_range,
-    get_highest_lowest_spend,
+import db
 
-)
-
-# get all expenses
+# get all expenses list
 @app.route('/get-expenses', methods=['GET'])
 def read_expenses():
-    expenses = get_expenses()
+    expenses = db.get_expenses()
     return jsonify(expenses), 200
 
-# get total expenses
+# get total expense amount
 @app.route('/get-total-expenses', methods=['GET'])
 def read_total_expenses():
-    total = get_total_expenses()
+    total = db.get_total_expenses()
     return jsonify(total), 200
 
 # get total expenses by category
 @app.route('/get-category-total', methods=['GET'])
 def read_expenses_by_category():
-    categories_list = get_unique_categories()
+    categories_list = db.get_unique_categories()
     result = []
     for cat in categories_list:
-        total = get_expenses_by_category(cat)
+        total = db.get_expenses_by_category(cat)
         result.append({'category': cat, 'total': total})
     return jsonify(result), 200
 
 
 # add a new expense
-# @app.route('/add-expenses', methods=['POST'])
-# def create_expense():
-#     data = request.json
-#     description = data.get('description')
-#     amount = data.get('amount')
-#     category = data.get('category')
-#     date = data.get('date')
+@app.route('/add-expenses', methods=['POST'])
+def create_expense():
+    data = request.json
+    description = data.get('description')
+    amount = data.get('amount')
+    category = data.get('category')
+    date = data.get('date')
 
-#     if not all([description, amount, category, date]):
-#         return jsonify({'error': 'Missing required fields'}), 400
+    if not all([description, amount, category, date]):
+        return jsonify({'error': 'Missing required fields'}), 400
 
-#     add_expense(description, amount, category, date)
-#     return jsonify({'message': 'Expense added successfully'}), 201
+    db.add_expense(description, amount, category, date)
+    return jsonify({'message': 'Expense added successfully'}), 201
 
 
 

@@ -1,0 +1,16 @@
+.mat-card-box{
+    min-width: 100px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.mat-card-title {
+    font-size: medium; 
+    text-align: center; 
+    width: 100%;
+}
+
+.mat-card-content{
+    text-align: center;
+    font-size: small;
+}

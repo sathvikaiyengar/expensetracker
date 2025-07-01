@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.flex-column-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.flex-space-between-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Padding */
+.pt-10 {
+    padding-top: 10px;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+
+.max-width-100{
+    max-width: 100%;
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+
+.progress-bar {
+    flex: 1;
+    max-width: 700px;
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    background-color: #eee;
+}
+
+.mat-card-container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 16px;
+}
+

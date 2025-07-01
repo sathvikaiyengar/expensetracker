@@ -1,14 +1,41 @@
 <div>
-  <h2>Expense Summary</h2>
+  <h2>Summary</h2>
 
-  <p><strong>Total Amount:</strong> ${{ totalAmount.toFixed(2) }}</p>
+  <!-- Total Amount and Progress Bar -->
+  <div class="flex-space-between-center max-width-100 flex-wrap">
+    <div class="margin-0">
+      <h3>Total Amount: ${{ totalAmount.toFixed(2) }}</h3>
+    </div>
 
-  <div *ngIf="categoryTotals">
-    <h3>Amount by Category:</h3>
-    <ul>
-        <li *ngFor="let category of categoryTotals">
-            {{ category.category }}: ${{ category.total.toFixed(2) }}
-        </li>
-    </ul>
+    <div class="progress-bar">
+      <div
+        *ngFor="let item of categoryTotals"
+        [ngStyle]="{ width: (item.total / totalAmount) * 100 + '%', backgroundColor: getCategoryColor(item.category)}"
+        matTooltip="{{ item.category }}: {{ (item.total / totalAmount) * 100 | number: '1.0-1' }}%"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Category Totals -->
+ <div *ngIf="categoryTotals">
+  <h3>Category Insights</h3>
+  <div class="mat-card-container">
+    <mat-card *ngFor="let category of categoryTotals"
+     class="mat-card-box"
+     
+    >
+      <mat-card-title
+        class="mat-card-title"
+        [ngStyle]="{ color: getCategoryColor(category.category) }"
+      >
+        {{ category.category }}
+
+      </mat-card-title>
+      <mat-card-content class="mat-card-content">
+        <div>${{ category.total.toFixed(2) }}</div>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
+
+
