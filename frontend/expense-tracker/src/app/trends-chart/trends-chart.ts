@@ -30,6 +30,7 @@ export class TrendsChartComponent implements AfterViewInit, OnChanges {
     
   }
 
+  // Method to render the chart with the provided expenses data
   renderChart() {
     if (!this.chartCanvas || !this.expenses?.length) return;
   
