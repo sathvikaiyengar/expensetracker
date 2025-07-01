@@ -49,8 +49,8 @@ export class SummaryStatsComponent implements OnInit {
   const colorMap: { [key: string]: string } = {
     Food: '#77AADD',
     Transport: '#EE8866',
-    Utilities: '#EEDD88',
-    Misc: '#FFAABB',
+    Utilities: '#FFAABB',
+    Misc: '#EEDD88',
     Beauty: '#44BB99',
     Entertainment: '#BBCC33',
   };

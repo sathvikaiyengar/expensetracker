@@ -6,19 +6,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-add-expense',
   imports: [FormsModule, CommonModule, ReactiveFormsModule ,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,],
+    MatButtonModule,MatSelectModule,
+    MatOptionModule],
   templateUrl: './add-expense.html',
   styleUrls: ['./add-expense.css']
 })
 
 // Component to add a new expense
 export class AddExpenseComponent {
+  categories: string[] = ['Food', 'Transport', 'Utilities', 'Misc', 'Beauty', 'Entertainment'];
   expenseForm: FormGroup;
 
   constructor(private expenseService: ExpenseService, private dialogRef: MatDialogRef<AddExpenseComponent>) {
