@@ -85,4 +85,30 @@ export class TrendsChartComponent implements AfterViewInit, OnChanges {
       }
     });
   }
+
+  // Method to generate a message summarizing the expense trends
+  getExpenseTrendMessage(expenses: Expense[]): string {
+    if (!this.expenses || this.expenses.length === 0) {
+      return 'No expenses recorded yet.';
+    }
+
+    // Calculate the first and last expense dates, total amount, highest and lowest expenses
+    const firstExpenseDate = new Date(this.expenses[0].date);
+    const lastExpenseDate = new Date(this.expenses[this.expenses.length - 1].date);
+    const totalAmount = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
+    const highestExpense = Math.max(...this.expenses.map(expense => expense.amount));
+    const highestExpenseDate = this.expenses.find(expense => expense.amount === highestExpense)?.date;
+    const highestExpenseCategory = this.expenses.find(expense => expense.amount === highestExpense)?.category;
+    const lowestExpense = Math.min(...this.expenses.map(expense => expense.amount));
+    const lowestExpenseDate = this.expenses.find(expense => expense.amount === lowestExpense)?.date;
+    const lowestExpenseCategory = this.expenses.find(expense => expense.amount === lowestExpense)?.category;
+
+    const highestExpenseDateStr = highestExpenseDate ? new Date(highestExpenseDate).toLocaleDateString() : 'N/A';
+    const lowestExpenseDateStr = lowestExpenseDate ? new Date(lowestExpenseDate).toLocaleDateString() : 'N/A';
+
+    return `${this.expenses.length} expense entries from ${firstExpenseDate.toLocaleDateString()} to ${lastExpenseDate.toLocaleDateString()}.
+  The total expenses amount to $${totalAmount}.
+  The highest expense was $${highestExpense} on ${highestExpenseDateStr} in the ${highestExpenseCategory} category.
+  The lowest was $${lowestExpense} on ${lowestExpenseDateStr} in the ${lowestExpenseCategory} category.`;
+  }
 }

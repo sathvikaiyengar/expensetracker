@@ -33,3 +33,5 @@ For virtual environment:
 > source env/bin/activate
 
 > python app.py 
+
+Slides are included in the presentation folder. There is a demo video available for this application: https://youtu.be/8_lJsuqIKAI. 

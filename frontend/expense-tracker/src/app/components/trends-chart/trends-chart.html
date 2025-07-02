@@ -3,6 +3,12 @@
   <canvas #chartCanvas></canvas>
 </div>
 
+<!-- Simple message about the data -->
+<div class="trend-message-container" *ngIf="expenses?.length">
+  <p class="trend-message">{{ getExpenseTrendMessage(expenses) }}</p>
+</div>
+
+<!-- Error message for when no data is available -->
 <div *ngIf="!expenses?.length">
   <p style="text-align: center; color: gray;">No data available for the selected range.</p>
 </div>
