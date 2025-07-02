@@ -63,6 +63,7 @@ export class ExpenseListComponent implements AfterViewInit {
     });
   }
 
+  // Open the trends filter dialog
   openTrendFilterDialog() {
     const dialogRef = this.dialog.open(ExpenseTrendsComponent, {
     width: '1000px',

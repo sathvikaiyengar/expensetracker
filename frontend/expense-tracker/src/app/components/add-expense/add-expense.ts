@@ -46,6 +46,7 @@ export class AddExpenseComponent {
     
     this.expenseService.addExpense(newExpense).subscribe({
       next: () => {
+        // Notify the service that expenses have changed
         this.expenseService.notifyExpensesChanged();
         this.dialogRef.close('submitted');
       },

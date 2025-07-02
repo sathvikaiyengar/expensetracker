@@ -51,6 +51,7 @@ export class ExpenseTrendsComponent {
         filters.category
       ).subscribe((data: any[]) => {
       this.chartData = data.map((arr: any[]) => ({
+        // Map the response data to the Expense model
         id: arr[0],
         description: arr[1],
         amount: arr[2],
