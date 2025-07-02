@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { TrendsChartComponent } from '../../trends-chart/trends-chart';
+import { TrendsChartComponent } from '../trends-chart/trends-chart';
 import { ExpenseService } from '../../services/expense-service';
 import { Expense } from '../../models/expense.model';
 import { MatButtonModule } from '@angular/material/button';

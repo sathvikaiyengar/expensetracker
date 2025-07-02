@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild } fro
 import { CommonModule } from '@angular/common';
 
 import Chart from 'chart.js/auto';
-import { Expense } from '../models/expense.model';
+import { Expense } from '../../models/expense.model';
 
 @Component({
   selector: 'app-trends-chart',
