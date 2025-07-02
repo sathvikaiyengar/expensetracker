@@ -51,36 +51,11 @@ def read_expenses_by_date_cat():
     start_date = data.get('startDate')
     end_date = data.get('endDate')
     category = data.get('category')
-    print(f"Received data: start_date={start_date}, end_date={end_date}, category={category}")
     if not start_date or not end_date:
         return jsonify({'error': 'Start date and end date are required'}), 400
 
     expenses = db.get_expenses_by_date_range_cat(start_date, end_date, category)
-    print(expenses)
     return jsonify(expenses), 200
-
-
-# delete an expense by ID
-# @app.route('/delete-expense/<int:expense_id>', methods=['DELETE'])
-# def remove_expense(expense_id):
-#     delete_expense(expense_id)
-#     return jsonify({'message': 'Expense deleted successfully'}), 200    
-
-# update an existing expense
-# @app.route('/update-expense/<int:expense_id>', methods=['PUT'])
-# def modify_expense(expense_id):
-#     data = request.json
-#     description = data.get('description')
-#     amount = data.get('amount')
-#     category = data.get('category')
-#     date = data.get('date')
-
-#     if not all([description, amount, category, date]):
-#         return jsonify({'error': 'Missing required fields'}), 400
-
-#     update_expense(expense_id, description, amount, category, date)
-#     return jsonify({'message': 'Expense updated successfully'}), 200
-
 
 if __name__ == '__main__':
     app.run(debug=True)

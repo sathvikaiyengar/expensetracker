@@ -1,7 +1,6 @@
 import sqlite3
 
 # Database functions for managing expenses
-# This module provides functions to create a database, add expenses, retrieve expenses and calculate totals.
 
 DB_PATH = 'expenses.db'
 
@@ -103,21 +102,10 @@ def get_expenses_by_date_range_cat(start_date, end_date, category=None):
     return expenses
 
 
-# main method
-# if __name__ == "__main__":
-#     create_db()
-#     print("Database created and initialized.")
-#     # Example usage
-#     add_expense("Stationary Haul", 15.0, "Misc", "2025-06-30")
-#     add_expense("Bus Ticket", 2.5, "Transport", "2025-05-02")
-#     add_expense("Groceries", 50.0, "Food", "2025-05-13")
-#     print("Expenses added.")
-
-# if __name__ == '__main__':
-#     create_db()  # ensure table exists
-#     print("Database created and initialized.")
-#     # Example usage
-#     add_expense("Stationary Haul", 15.0, "Misc", "2025-06-30")
-#     add_expense("Bus Ticket", 2.5, "Transport", "2025-05-02")
-#     add_expense("Groceries", 50.0, "Food", "2025-05-13")
-#     app.run(debug=True)
+# main method to create the database and add some initial data
+if __name__ == "__main__":
+    create_db()
+    # Example usage
+    add_expense("Stationary Haul", 15.0, "Misc", "2025-06-30")
+    add_expense("Bus Ticket", 2.5, "Transport", "2025-05-02")
+    add_expense("Groceries", 50.0, "Food", "2025-05-13")
