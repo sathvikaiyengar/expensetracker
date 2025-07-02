@@ -1,5 +1,8 @@
 import sqlite3
 
+# Database functions for managing expenses
+# This module provides functions to create a database, add expenses, retrieve expenses and calculate totals.
+
 DB_PATH = 'expenses.db'
 
 # create_db function to initialize the expenses database

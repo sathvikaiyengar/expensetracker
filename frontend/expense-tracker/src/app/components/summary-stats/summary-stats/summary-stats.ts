@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './summary-stats.html',
   styleUrls: ['./summary-stats.css']
 })
+
+// Component to display summary statistics of expenses
 export class SummaryStatsComponent implements OnInit {
  totalAmount: number = 0;
   categoryTotals: { category: string; total: number }[] = [];
